@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="kodi"
-PKG_VERSION="16.0-beta2-64de219"
+PKG_VERSION="16.0-beta5-19fc4fa"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -73,10 +73,7 @@ fi
 
 if [ "$PULSEAUDIO_SUPPORT" = yes ]; then
 # for PulseAudio support
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET pulseaudio"
-  KODI_PULSEAUDIO="--enable-pulse"
-else
-  KODI_PULSEAUDIO="--disable-pulse"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET pulseaudio alsa-plugins"
 fi
 
 if [ "$ESPEAK_SUPPORT" = yes ]; then
@@ -254,7 +251,7 @@ PKG_CONFIGURE_OPTS_TARGET="gl_cv_func_gettimeofday_clobber=no \
                            $KODI_XORG \
                            --disable-ccache \
                            $KODI_ALSA \
-                           $KODI_PULSEAUDIO \
+                           --disable-pulse \
                            --enable-rtmp \
                            $KODI_SAMBA \
                            $KODI_NFS \
